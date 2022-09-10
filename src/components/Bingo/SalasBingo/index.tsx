@@ -1,44 +1,30 @@
-import { useEffect, useState } from "react";
-import { useAppSelector } from "../../../hooks";
-import socket from "../../../socket";
+import { MouseEventHandler } from "react";
+import { useInitBingo, useGetSalas } from "../../../hooks/useBingo";
 import "./salasBingo.css";
 const index = () => {
-  const salaBingo = useAppSelector((state) => state.bingo);
-  const jugador = useAppSelector((state) => state.jugador);
-  const [salasBingo, setSalasBingo] = useState<string[]>([]);
-  useEffect(() => {
-    socket.on("isActive", () => {
-      socket.emit("bingo:get-salas");
-    });
-    socket.on("bingo:get-sala", () => {
-      if (salaBingo.me && salaBingo.state) {
-        socket.emit("bingo:set-sala", jugador.value);
-      }
-    });
-    socket.on("bingo:set-sala", (data: string) => {
-      setSalasBingo([...salasBingo, data]);
-    });
-    return () => {
-      socket.off("bingo:get-salas");
-      socket.off("bingo:set-sala");
-      socket.off("bingo:set-sala");
-    };
-  }, []);
+  const { salasBingo } = useGetSalas();
+  const { create } = useInitBingo();
+  const handleCreaeteSala: MouseEventHandler<HTMLButtonElement> = () => {
+    console.log("felipe");
+    create();
+  };
   return (
     <div className="bingo__list">
       {salasBingo.length === 0 ? (
         <>
           <h2>no hay salas</h2>
-          <button>crear sala</button>
+          <button onClick={handleCreaeteSala}>crear sala</button>
         </>
       ) : (
         <>
           <ul>
-            {salasBingo.map((sala) => (
-              <li>{sala}</li>
+            {salasBingo.map((sala, index) => (
+              <li key={index} id={sala.id}>
+                {sala.nombre}
+              </li>
             ))}
           </ul>
-          <button>crear sala</button>
+          <button onClick={handleCreaeteSala}>crear sala</button>
         </>
       )}
     </div>
