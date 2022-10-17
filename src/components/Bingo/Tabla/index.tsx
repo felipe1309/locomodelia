@@ -1,13 +1,12 @@
 import { MouseEventHandler, useEffect, useState } from "react";
 import TablaItem from "../TablaItem";
 import { useAppSelector } from "../../../hooks";
-import { useInitBingo } from "../../../hooks/useBingo";
-
+import { useCreateBingo } from "../../../hooks/useCreateSala";
 const index = () => {
   const bingo = useAppSelector((state) => state.bingo);
-  const { create } = useInitBingo();
+  const { createSala } = useCreateBingo();
   const handdleCreateBingo: MouseEventHandler<HTMLButtonElement> = () => {
-    create();
+    createSala()
   };
   return (
     <section>

@@ -12,7 +12,6 @@ const index = () => {
     nombre: "",
     repetirContraseña: "",
   });
-
   const handdleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setRegistrarse({
       ...registrarse,

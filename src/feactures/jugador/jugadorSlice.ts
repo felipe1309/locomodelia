@@ -12,7 +12,12 @@ const jugadorSlice = createSlice({
       window.localStorage.setItem("jugadorToken", action.payload.value);
       return action.payload;
     },
-    close: (state) => {},
+    close: () => {
+      window.localStorage.removeItem("jugadorToken")
+      return {
+        value:''
+      }
+    },
   },
 });
 export const { close, logIn, logUp } = jugadorSlice.actions;

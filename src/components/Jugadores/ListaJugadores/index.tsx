@@ -1,15 +1,15 @@
-import { useAppSelector } from "../../../hooks";
+import { useListaJugadores } from "../../../hooks/useListaJugadores";
 import ListaJugadoresItem from "./ListaJugadoresItem";
 const index = () => {
-  const jugadores = useAppSelector((state) => state.jugadores);
+  const { players } = useListaJugadores();
   return (
     <>
-      {jugadores.length == 0 ? (
+      {players.length == 0 ? (
         <h2>no hay jugadores activos</h2>
       ) : (
         <ul>
-          {jugadores.map((jugador, index) => (
-            <ListaJugadoresItem nombre={jugador} key={index} />
+          {players.map((jugador, index) => (
+            <ListaJugadoresItem nombre={jugador.name} key={index} />
           ))}
         </ul>
       )}

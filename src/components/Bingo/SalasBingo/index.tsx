@@ -1,32 +1,27 @@
 import { MouseEventHandler } from "react";
-import { useInitBingo, useGetSalas } from "../../../hooks/useBingo";
+import { useNavigate } from "react-router-dom";
+import SalasBingoItem from "./SalasBingoItem";
+import { useCreateBingo } from "../../../hooks/useCreateSala";
+import { useSalasBingo } from "../../../hooks/useSalasBingo";
 import "./salasBingo.css";
 const index = () => {
-  const { salasBingo } = useGetSalas();
-  const { create } = useInitBingo();
+  const { salasBingo } = useSalasBingo();
+  const route = useNavigate();
+  const { createSala } = useCreateBingo();
   const handleCreaeteSala: MouseEventHandler<HTMLButtonElement> = () => {
-    console.log("felipe");
-    create();
+    createSala()
+    route('/jugar')
   };
   return (
     <div className="bingo__list">
-      {salasBingo.length === 0 ? (
-        <>
-          <h2>no hay salas</h2>
-          <button onClick={handleCreaeteSala}>crear sala</button>
-        </>
-      ) : (
-        <>
-          <ul>
-            {salasBingo.map((sala, index) => (
-              <li key={index} id={sala.id}>
-                {sala.nombre}
-              </li>
-            ))}
-          </ul>
-          <button onClick={handleCreaeteSala}>crear sala</button>
-        </>
-      )}
+      <>
+        <ul className="list__salas">
+          {salasBingo.map((sala, index) => (
+            <SalasBingoItem id={sala.id} nombre={sala.name} key={index} />
+          ))}
+        </ul>
+        <button onClick={handleCreaeteSala}>crear sala</button>
+      </>
     </div>
   );
 };

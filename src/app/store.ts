@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import jugadorReducer from "../feactures/jugador/jugadorSlice";
-import jugadoresReducer from "../feactures/jugadores/jugadoresSlice";
 import bingoReducer from "../feactures/bingo/bingoSlice";
 const store = configureStore({
   reducer: {
     jugador: jugadorReducer,
-    jugadores: jugadoresReducer,
     bingo: bingoReducer
   },
 });

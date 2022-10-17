@@ -1,7 +1,8 @@
-export interface bingo {
+export type bingo = {
   state: boolean;
   me: boolean;
   bingoItems: bingoItem[];
+  idAdmin?: number
 }
 export type bingoItem = {
   state: boolean;

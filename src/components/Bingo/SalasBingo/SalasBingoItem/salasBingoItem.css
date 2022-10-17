@@ -1,0 +1,22 @@
+.lista__salas-item {
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: blue;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    transition: .3s all ease;
+}
+.lista__salas-item:hover {
+    background: blue;
+    color:aliceblue
+}
+.asala__activa {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgb(21, 255, 0);
+    margin-left: 10px;
+}

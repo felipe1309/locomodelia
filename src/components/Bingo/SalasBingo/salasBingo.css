@@ -1,3 +1,8 @@
 .bingo__list{
-    background: rgb(72, 72, 255);
+    border: 1px solid black;
+    min-height: 200px;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    background: rgba(0, 68, 255, 0.5);
 }
